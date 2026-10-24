@@ -79,7 +79,7 @@ export default async function HomePage() {
               </div>
             </form>
 
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 grid gap-3 sm:flex sm:flex-wrap">
               <LinkButton href="/biblioteca" variant="green" size="lg">
                 <BookOpen aria-hidden="true" className="h-5 w-5" />
                 Explorar biblioteca
@@ -216,7 +216,7 @@ export default async function HomePage() {
           <ul className="grid gap-5 lg:grid-cols-3">
             {sessions.map((s) => (
               <li key={s.id}>
-                <SessionCard session={s} />
+                <SessionCard session={s} vertical />
               </li>
             ))}
           </ul>

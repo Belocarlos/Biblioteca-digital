@@ -11,11 +11,11 @@ export function EventStatusBadge({ status }: { status: SessionCardData["event_st
   return <Badge tone={tone}>{EVENT_STATUS_LABELS[status]}</Badge>;
 }
 
-export function SessionCard({ session }: { session: SessionCardData }) {
+export function SessionCard({ session, vertical = false }: { session: SessionCardData; vertical?: boolean }) {
   const poster = mediaUrl(session.poster_key);
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-md border border-line bg-white sm:flex-row">
-      <div className="shrink-0 border-b border-line bg-surface sm:w-40 sm:border-b-0 sm:border-r">
+    <article className={`flex h-full flex-col overflow-hidden rounded-md border border-line bg-white ${vertical ? "" : "sm:flex-row"}`}>
+      <div className={`shrink-0 border-b border-line bg-surface ${vertical ? "" : "sm:w-40 sm:border-b-0 sm:border-r"}`}>
         {poster ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -24,10 +24,10 @@ export function SessionCard({ session }: { session: SessionCardData }) {
             width={320}
             height={400}
             loading="lazy"
-            className="aspect-[4/5] h-full w-full object-cover"
+            className={`h-full w-full object-cover ${vertical ? "aspect-[16/9]" : "aspect-[4/5]"}`}
           />
         ) : (
-          <div className="flex aspect-[4/5] h-full w-full flex-col items-center justify-center gap-2 p-4 text-center text-muted max-sm:aspect-[3/1]">
+          <div className={`flex h-full w-full flex-col items-center justify-center gap-2 p-4 text-center text-muted ${vertical ? "aspect-[16/9]" : "aspect-[4/5] max-sm:aspect-[3/1]"}`}>
             <Mic aria-hidden="true" className="h-6 w-6 stroke-[1.5]" />
             <span className="text-xs">Cartaz não disponível</span>
           </div>

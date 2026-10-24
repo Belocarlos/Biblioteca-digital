@@ -70,7 +70,8 @@ export function PdfViewer({ url, title, downloadUrl }: { url: string; title: str
     const el = containerRef.current;
     if (!el || !baseSize) return;
     const available = el.clientWidth - 32;
-    setScale(Math.min(MAX_SCALE, Math.max(MIN_SCALE, available / baseSize.width)));
+    // Ajusta à largura, com um limite de 150% para manter a página legível no ecrã.
+    setScale(Math.min(1.5, Math.max(MIN_SCALE, available / baseSize.width)));
   }, [baseSize]);
 
   useEffect(() => {

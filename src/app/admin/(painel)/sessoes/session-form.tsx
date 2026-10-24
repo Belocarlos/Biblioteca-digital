@@ -167,7 +167,7 @@ export function SessionForm({ values, options, canEdit }: { values?: SessionForm
         </fieldset>
 
         {canEdit ? (
-          <div className="sticky bottom-0 -mx-1 flex flex-wrap items-center gap-3 border-t border-line bg-white/95 px-1 py-4">
+          <div className="sticky bottom-0 -mx-1 flex flex-wrap items-center gap-3 border-t border-line bg-white px-1 py-4 shadow-[0_-4px_8px_-6px_rgba(15,43,71,0.15)]">
             <SubmitButton size="lg" pendingText="A guardar...">
               {isEdit ? "Guardar alterações" : "Criar rascunho"}
             </SubmitButton>
