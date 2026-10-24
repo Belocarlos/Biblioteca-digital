@@ -9,9 +9,9 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "postinstall": "node scripts/copy-pdfjs.mjs",
-    "db:migrate": "tsx --env-file-if-exists=.env.local scripts/migrate.ts",
-    "admin:create": "tsx --env-file-if-exists=.env.local scripts/create-admin.ts",
-    "maintenance:retention": "tsx --env-file-if-exists=.env.local scripts/retention.ts",
+    "db:migrate": "tsx --env-file-if-exists=.env.local scripts/migrate.mts",
+    "admin:create": "tsx --env-file-if-exists=.env.local scripts/create-admin.mts",
+    "maintenance:retention": "tsx --env-file-if-exists=.env.local scripts/retention.mts",
     "icons": "node scripts/generate-icons.mjs",
     "test": "vitest run",
     "test:e2e": "playwright test"

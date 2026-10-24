@@ -15,6 +15,9 @@ function createClient(): Sql {
     connect_timeout: 10,
     onnotice: () => {},
     transform: { undefined: null },
+    // Com um gestor de ligações em modo de transação (por exemplo, Supabase Supavisor
+    // na porta 6543), as instruções preparadas devem ser desativadas.
+    prepare: process.env.DATABASE_PREPARE !== "false",
   });
 }
 

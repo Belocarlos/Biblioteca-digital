@@ -15,7 +15,7 @@ export default async function globalSetup() {
   } finally {
     await sql.end();
   }
-  execFileSync("npx", ["tsx", "scripts/migrate.ts"], { env: { ...process.env, ...E2E_ENV }, stdio: "inherit" });
+  execFileSync("npx", ["tsx", "scripts/migrate.mts"], { env: { ...process.env, ...E2E_ENV }, stdio: "inherit" });
   await rm(E2E_ENV.STORAGE_LOCAL_DIR, { recursive: true, force: true });
 
   const db = postgres(E2E_ENV.MIGRATION_DATABASE_URL, { max: 1, onnotice: () => {} });

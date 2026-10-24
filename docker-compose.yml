@@ -1,0 +1,41 @@
+# Ambiente completo local ou num servidor próprio (base de dados + aplicação).
+# Copie .env.example para .env e altere todas as palavras-passe antes de usar.
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ol4
+      POSTGRES_USER: ol4_owner
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Defina POSTGRES_PASSWORD}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ol4_owner -d ol4"]
+      interval: 5s
+      retries: 10
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://ol4_app:${APP_DB_PASSWORD:?Defina APP_DB_PASSWORD}@db:5432/ol4
+      MIGRATION_DATABASE_URL: postgres://ol4_owner:${POSTGRES_PASSWORD}@db:5432/ol4
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD}
+      APP_SECRET: ${APP_SECRET:?Defina APP_SECRET}
+      SITE_URL: ${SITE_URL:-http://localhost:3000}
+      SITE_INDEXING: ${SITE_INDEXING:-false}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      STORAGE_DRIVER: local
+      STORAGE_LOCAL_DIR: /app/storage
+    ports:
+      - "3000:3000"
+    volumes:
+      - files:/app/storage
+
+volumes:
+  db-data:
+  files:

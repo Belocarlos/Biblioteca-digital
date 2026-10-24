@@ -57,3 +57,17 @@ test.describe("Responsividade", () => {
     await expect(page.getByRole("button", { name: "Menu" })).toHaveAttribute("aria-expanded", "false");
   });
 });
+
+test.describe("Qualidade técnica", () => {
+  test("sem erros na consola do navegador nem violações de CSP", async ({ page }) => {
+    const errors: string[] = [];
+    page.on("console", (m) => {
+      if (m.type() === "error") errors.push(`${page.url()}: ${m.text()}`);
+    });
+    page.on("pageerror", (e) => errors.push(`${page.url()}: ${e.message}`));
+    for (const path of ["/", "/biblioteca", "/sessoes", "/sessoes/demo-justica-climatica-e-acao-local", "/autores", "/autores/demo-ana-demonstracao", "/colecoes", "/sobre", "/contactos", "/submeter", "/politica-de-privacidade"]) {
+      await page.goto(path, { waitUntil: "networkidle" });
+    }
+    expect(errors).toEqual([]);
+  });
+});
