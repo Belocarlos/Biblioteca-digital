@@ -65,7 +65,7 @@ export default async function SessionsPage({ searchParams }: PageProps<"/sessoes
               type="search"
               defaultValue={q}
               placeholder="Tema ou orador"
-              className="h-10 w-full rounded-md border border-line-strong px-3 text-sm focus:border-brand-blue focus:outline-none md:w-64"
+              className="h-10 w-full rounded-md border border-line-strong px-3 text-sm focus:border-brand-blue md:w-64"
             />
             <button type="submit" className="h-10 rounded-md bg-brand-blue px-4 text-sm font-medium text-white hover:bg-brand-blue-dark">
               Pesquisar

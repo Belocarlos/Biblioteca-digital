@@ -70,7 +70,7 @@ export default async function HomePage() {
                     name="q"
                     type="search"
                     placeholder="Pesquisar livros, artigos, autores ou temas..."
-                    className="h-12 w-full rounded-md border border-line-strong bg-white pl-11 pr-3 text-base placeholder:text-muted focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20"
+                    className="h-12 w-full rounded-md border border-line-strong bg-white pl-11 pr-3 text-base placeholder:text-muted focus:border-brand-blue"
                   />
                 </div>
                 <button type="submit" className="h-12 rounded-md bg-brand-blue px-6 text-base font-medium text-white hover:bg-brand-blue-dark">
@@ -126,7 +126,7 @@ export default async function HomePage() {
 
         {indicators.length > 0 ? (
           <div className="border-t border-line bg-white">
-            <dl className="container-page grid divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            <dl aria-label="Indicadores da biblioteca" className="container-page grid divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
               {indicators.map((i) => (
                 <div key={i.plural} className="flex items-baseline gap-3 py-5 sm:px-6 sm:first:pl-0">
                   <dt className="sr-only">{i.plural}</dt>

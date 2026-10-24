@@ -21,31 +21,29 @@ export function ResourceCard({ resource, headingLevel = 3 }: { resource: Resourc
             {resource.title}
           </Link>
         </Heading>
-        <dl className="mt-3 space-y-1 text-sm text-ink">
-          <div className="flex gap-1.5">
+        <dl className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-sm">
+          <div className="w-full">
             <dt className="sr-only">Autoria</dt>
-            <dd className="line-clamp-2">{authorText || <span className="text-muted">Autoria não indicada</span>}</dd>
+            <dd className="line-clamp-2 text-ink">{authorText || <span className="text-muted">Autoria não indicada</span>}</dd>
           </div>
-          <div className="flex flex-wrap gap-x-3 gap-y-1 text-muted">
-            {resource.publication_year ? (
-              <div className="flex gap-1">
-                <dt className="sr-only">Ano</dt>
-                <dd>{resource.publication_year}</dd>
-              </div>
-            ) : null}
-            {resource.collection ? (
-              <div className="flex gap-1">
-                <dt className="sr-only">Área temática</dt>
-                <dd>{resource.collection.name}</dd>
-              </div>
-            ) : null}
-          </div>
+          {resource.publication_year ? (
+            <div>
+              <dt className="sr-only">Ano</dt>
+              <dd className="text-muted">{resource.publication_year}</dd>
+            </div>
+          ) : null}
+          {resource.collection ? (
+            <div>
+              <dt className="sr-only">Área temática</dt>
+              <dd className="text-muted">{resource.collection.name}</dd>
+            </div>
+          ) : null}
         </dl>
         <div className="mt-auto pt-4">
           <Link
             href={`/biblioteca/${resource.slug}`}
             className="inline-flex h-9 items-center rounded-md border border-line-strong px-3 text-sm font-medium text-brand-blue hover:border-brand-blue hover:bg-brand-blue-50"
-            aria-label={`Ver detalhes de ${resource.title}`}
+            aria-label={`Ver detalhes: ${resource.title}`}
           >
             Ver detalhes
           </Link>

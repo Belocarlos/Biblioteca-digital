@@ -26,8 +26,9 @@ export function SiteHeader() {
         </div>
       </div>
       <div className="container-page flex items-center justify-between gap-6 py-4">
-        <Link href="/" aria-label="Biblioteca Digital Open Lecture4All, página inicial" className="shrink-0">
+        <Link href="/" className="shrink-0">
           <Logo />
+          <span className="sr-only">, página inicial</span>
         </Link>
         <form action="/biblioteca" method="get" role="search" className="hidden max-w-md flex-1 md:flex">
           <label htmlFor="header-q" className="sr-only">
@@ -40,7 +41,7 @@ export function SiteHeader() {
               name="q"
               type="search"
               placeholder="Pesquisar livros, artigos, autores ou temas..."
-              className="h-10 w-full rounded-l-md border border-r-0 border-line-strong bg-white pl-9 pr-3 text-sm placeholder:text-muted focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20"
+              className="h-10 w-full rounded-l-md border border-r-0 border-line-strong bg-white pl-9 pr-3 text-sm placeholder:text-muted focus:border-brand-blue"
             />
           </div>
           <button type="submit" className="h-10 rounded-r-md bg-brand-blue px-4 text-sm font-medium text-white hover:bg-brand-blue-dark">

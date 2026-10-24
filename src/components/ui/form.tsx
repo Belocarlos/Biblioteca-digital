@@ -2,7 +2,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 const control =
-  "block w-full rounded-md border border-line-strong bg-white px-3 text-sm text-ink-strong placeholder:text-muted/80 focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20 disabled:bg-surface aria-[invalid=true]:border-danger";
+  "block w-full rounded-md border border-line-strong bg-white px-3 text-sm text-ink-strong placeholder:text-muted/80 focus:border-brand-blue disabled:bg-surface aria-[invalid=true]:border-danger";
 
 export function Label({ htmlFor, children, required, className }: { htmlFor: string; children: ReactNode; required?: boolean; className?: string }) {
   return (

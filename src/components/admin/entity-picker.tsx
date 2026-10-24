@@ -116,7 +116,7 @@ export function EntityPicker({
           }}
           placeholder={searchPlaceholder}
           autoComplete="off"
-          className="h-10 w-full rounded-md border border-line-strong bg-white px-3 text-sm focus:border-brand-blue focus:outline-none"
+          className="h-10 w-full rounded-md border border-line-strong bg-white px-3 text-sm focus:border-brand-blue"
         />
         {query.trim() ? (
           <ul className="mt-1 divide-y divide-line rounded-md border border-line bg-white" aria-label="Resultados">

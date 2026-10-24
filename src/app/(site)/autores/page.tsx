@@ -33,13 +33,13 @@ export default async function AuthorsPage({ searchParams }: PageProps<"/autores"
             <label htmlFor="autores-q" className="mb-1.5 block text-sm font-medium text-ink-strong">
               Nome ou instituição
             </label>
-            <input id="autores-q" name="q" type="search" defaultValue={q} placeholder="Pesquisar por nome" className="h-10 w-full rounded-md border border-line-strong px-3 text-sm focus:border-brand-blue focus:outline-none" />
+            <input id="autores-q" name="q" type="search" defaultValue={q} placeholder="Pesquisar por nome" className="h-10 w-full rounded-md border border-line-strong px-3 text-sm focus:border-brand-blue" />
           </div>
           <div>
             <label htmlFor="autores-area" className="mb-1.5 block text-sm font-medium text-ink-strong">
               Área de especialização
             </label>
-            <select id="autores-area" name="area" defaultValue={area} className="h-10 w-full rounded-md border border-line-strong bg-white px-3 text-sm focus:border-brand-blue focus:outline-none">
+            <select id="autores-area" name="area" defaultValue={area} className="h-10 w-full rounded-md border border-line-strong bg-white px-3 text-sm focus:border-brand-blue">
               <option value="">Todas as áreas</option>
               {areas.map((a) => (
                 <option key={a.value} value={a.value}>

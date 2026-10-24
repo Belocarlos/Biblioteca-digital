@@ -66,7 +66,7 @@ export default async function EditAuthorPage({ params, searchParams }: PageProps
                 help={`JPEG, PNG ou WebP até ${formatBytes(LIMITS.imageBytes)}. Não utilize imagens geradas por inteligência artificial.`}
                 hasFile={!!a.photo_key}
                 removeLabel="Remover fotografia"
-                extra={<Checkbox id="upload-photo-authorized" name="photo_authorized" label="A pessoa retratada autorizou a utilização desta fotografia." />}
+                extra={<Checkbox id="upload-photo-authorized" name="photo_authorized" required label="A pessoa retratada autorizou a utilização desta fotografia." />}
               />
             ) : null}
           </Panel>

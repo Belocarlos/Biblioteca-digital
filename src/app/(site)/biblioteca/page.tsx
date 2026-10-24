@@ -23,7 +23,7 @@ export async function generateMetadata({ searchParams }: PageProps<"/biblioteca"
 }
 
 const selectCls =
-  "h-10 w-full rounded-md border border-line-strong bg-white px-3 text-sm text-ink-strong focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20";
+  "h-10 w-full rounded-md border border-line-strong bg-white px-3 text-sm text-ink-strong focus:border-brand-blue";
 
 export default async function CatalogPage({ searchParams }: PageProps<"/biblioteca">) {
   const params = parseCatalogParams(await searchParams);
@@ -68,7 +68,7 @@ export default async function CatalogPage({ searchParams }: PageProps<"/bibliote
               type="search"
               defaultValue={params.q}
               placeholder="Pesquisar livros, artigos, autores ou temas..."
-              className="h-11 w-full rounded-md border border-line-strong bg-white px-3 text-base focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20"
+              className="h-11 w-full rounded-md border border-line-strong bg-white px-3 text-base focus:border-brand-blue"
             />
           </div>
           <div>

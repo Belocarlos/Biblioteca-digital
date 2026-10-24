@@ -59,7 +59,7 @@ export function SessionCard({ session }: { session: SessionCardData }) {
         ) : null}
         {session.summary ? <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-ink">{session.summary}</p> : null}
         <div className="mt-auto pt-4">
-          <Link href={`/sessoes/${session.slug}`} className="link text-sm font-medium" aria-label={`Consultar a sessão ${session.title}`}>
+          <Link href={`/sessoes/${session.slug}`} className="link text-sm font-medium" aria-label={`Consultar sessão: ${session.title}`}>
             Consultar sessão
           </Link>
         </div>

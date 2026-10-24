@@ -11,7 +11,7 @@ export function PasswordForm() {
   const [state, action] = useActionState(changePassword, initialFormState);
   const e = state.errors ?? {};
   return (
-    <form action={action} className="max-w-md space-y-5">
+    <form action={action} className="max-w-md space-y-5" noValidate>
       <FormMessage state={state} />
       <Field name="current" label="Palavra-passe atual" required error={e.current}>
         {({ id, describedBy, invalid }) => <Input id={id} name="current" type="password" autoComplete="current-password" required aria-describedby={describedBy} aria-invalid={invalid} />}

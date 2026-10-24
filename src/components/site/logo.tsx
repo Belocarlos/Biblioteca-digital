@@ -23,7 +23,7 @@ export function Logo({ className, inverted = false }: { className?: string; inve
       <span className="flex flex-col leading-none">
         <span className={cn("font-heading text-[1.0625rem] font-semibold tracking-tight", inverted ? "text-white" : "text-brand-blue")}>
           Biblioteca Digital
-        </span>
+        </span>{" "}
         <span className={cn("mt-1 text-[0.8125rem] font-medium", inverted ? "text-white/80" : "text-brand-green")}>Open Lecture4All</span>
       </span>
     </span>

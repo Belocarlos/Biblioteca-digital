@@ -29,7 +29,7 @@ export function WorkflowForm({ action, id, transitions }: { action: Action; id: 
         <label htmlFor="workflow-note" className="mb-1.5 block text-sm font-medium text-ink-strong">
           Nota editorial <span className="font-normal text-muted">(opcional)</span>
         </label>
-        <textarea id="workflow-note" name="note" rows={2} maxLength={1000} className="block w-full rounded-md border border-line-strong px-3 py-2 text-sm focus:border-brand-blue focus:outline-none" />
+        <textarea id="workflow-note" name="note" rows={2} maxLength={1000} className="block w-full rounded-md border border-line-strong px-3 py-2 text-sm focus:border-brand-blue" />
       </div>
       <div className="space-y-2">
         {transitions.map((t) => (

@@ -77,7 +77,7 @@ export function MobileMenu() {
               name="q"
               type="search"
               placeholder="Pesquisar livros, artigos, autores ou temas..."
-              className="h-10 min-w-0 flex-1 rounded-md border border-line-strong px-3 text-sm focus:border-brand-blue focus:outline-none"
+              className="h-10 min-w-0 flex-1 rounded-md border border-line-strong px-3 text-sm focus:border-brand-blue"
             />
             <button type="submit" className="inline-flex h-10 items-center rounded-md bg-brand-blue px-3 text-white" aria-label="Pesquisar">
               <Search aria-hidden="true" className="h-4 w-4" />

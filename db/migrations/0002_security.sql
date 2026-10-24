@@ -465,21 +465,21 @@ as $$
   where u.email = p_email
 $$;
 
+-- Falhas recentes por conta (desde o último acesso com sucesso) e por endereço IP.
 create or replace function app.auth_recent_failures(p_email citext, p_ip_hash text, p_window interval)
-returns integer
+returns table (by_email integer, by_ip integer)
 language sql
 stable
 security definer
 set search_path = pg_catalog, public, private
 as $$
-  select count(*)::int from private.login_attempts a
-  where not a.success
-    and a.created_at > now() - p_window
-    and (a.email = p_email or a.ip_hash = p_ip_hash)
-    and a.created_at > coalesce((
-      select max(b.created_at) from private.login_attempts b
-      where b.success and b.email = p_email
-    ), '-infinity'::timestamptz)
+  select
+    (select count(*)::int from private.login_attempts a
+     where not a.success and a.email = p_email and a.created_at > now() - p_window
+       and a.created_at > coalesce((select max(b.created_at) from private.login_attempts b
+                                    where b.success and b.email = p_email), '-infinity'::timestamptz)),
+    (select count(*)::int from private.login_attempts a
+     where not a.success and a.ip_hash = p_ip_hash and a.created_at > now() - p_window)
 $$;
 
 create or replace function app.auth_record_attempt(p_email citext, p_ip_hash text, p_success boolean)

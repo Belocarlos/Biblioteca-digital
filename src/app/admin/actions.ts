@@ -8,7 +8,8 @@ import { asUser, createSession, destroySession, getCurrentUser } from "@/lib/aut
 import { clientIpHash } from "@/lib/security";
 import { str, type FormState } from "@/lib/form-utils";
 
-const MAX_FAILURES = 5;
+const MAX_FAILURES_PER_ACCOUNT = 5;
+const MAX_FAILURES_PER_IP = 20;
 const WINDOW = "15 minutes";
 
 export async function login(_prev: FormState, formData: FormData): Promise<FormState> {
@@ -20,9 +21,9 @@ export async function login(_prev: FormState, formData: FormData): Promise<FormS
   }
 
   const ipHash = await clientIpHash();
-  const [{ failures }] = await sql<{ failures: number }[]>`
-    select app.auth_recent_failures(${email}, ${ipHash}, ${WINDOW}::interval) as failures`;
-  if (failures >= MAX_FAILURES) {
+  const [failures] = await sql<{ by_email: number; by_ip: number }[]>`
+    select * from app.auth_recent_failures(${email}, ${ipHash}, ${WINDOW}::interval)`;
+  if (!failures || failures.by_email >= MAX_FAILURES_PER_ACCOUNT || failures.by_ip >= MAX_FAILURES_PER_IP) {
     return { status: "error", message: "Demasiadas tentativas sem sucesso. Aguarde 15 minutos antes de tentar novamente.", data: { email } };
   }
 

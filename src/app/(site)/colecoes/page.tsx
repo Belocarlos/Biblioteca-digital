@@ -22,7 +22,7 @@ export default async function CollectionsPage() {
       />
       <div className="container-page py-10">
         {collections.length ? (
-          <ol className="divide-y divide-line border-y border-line">
+          <ol aria-label="Lista de coleções" className="divide-y divide-line border-y border-line">
             {collections.map((c, i) => (
               <li key={c.id}>
                 <Link href={`/colecoes/${c.slug}`} className="group grid gap-2 py-6 sm:grid-cols-[3rem_1fr_auto] sm:items-baseline sm:gap-6">
