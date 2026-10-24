@@ -565,7 +565,9 @@ begin
   insert into private.credentials (user_id, password_hash, updated_at)
   values (p_user_id, p_hash, now())
   on conflict (user_id) do update set password_hash = excluded.password_hash, updated_at = now();
+  perform set_config('app.password_change', 'on', true);
   update public.users set must_change_password = not is_self where id = p_user_id;
+  perform set_config('app.password_change', '', true);
   delete from private.sessions
   where user_id = p_user_id and (p_keep_token_hash is null or token_hash <> p_keep_token_hash);
   insert into public.audit_log (actor_id, action, entity_type, entity_id, details)
@@ -630,11 +632,16 @@ security definer
 set search_path = pg_catalog, public, private
 as $$
 begin
+  -- A ligação de manutenção (proprietário do esquema, linha de comandos) não é restringida.
+  if session_user <> 'ol4_app' then
+    return new;
+  end if;
   if app.current_role() <> 'admin' and (
       new.role is distinct from old.role
       or new.is_active is distinct from old.is_active
       or new.email is distinct from old.email
-      or new.must_change_password is distinct from old.must_change_password) then
+      or (new.must_change_password is distinct from old.must_change_password
+          and coalesce(current_setting('app.password_change', true), '') <> 'on')) then
     raise exception 'Apenas administradores podem alterar funções, estado ou e-mail.' using errcode = '42501';
   end if;
   return new;

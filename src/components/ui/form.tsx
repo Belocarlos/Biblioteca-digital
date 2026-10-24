@@ -88,7 +88,9 @@ export function Checkbox({
   required,
   error,
   value = "on",
+  id: idProp,
 }: {
+  id?: string;
   name: string;
   label: ReactNode;
   description?: ReactNode;
@@ -97,7 +99,7 @@ export function Checkbox({
   error?: string | string[] | null;
   value?: string;
 }) {
-  const id = `f-${name}`;
+  const id = idProp ?? `f-${name}`;
   const errId = error ? `${id}-error` : undefined;
   return (
     <div>
